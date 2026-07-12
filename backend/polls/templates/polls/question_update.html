@@ -1,0 +1,9 @@
+<h1>Esta es la página para Actualizar la pregunta {{ question_id }} </h1>
+
+<form action="{% url 'polls:update' question.id %}" method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Actualizar">
+</form>
+
+<p><a href="{% url 'polls:index' %}">Volver</a></p>
