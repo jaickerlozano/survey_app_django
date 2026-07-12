@@ -24,3 +24,7 @@ class QuestionAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Question, QuestionAdmin)
+admin.site.site_header = "Pollster Admin"
+admin.site.site_title = "Pollster Admin Area"
+admin.site.index_title = "Welcome to the Pollster Admin Area"
+# admin.site.register(Choice)
