@@ -1,11 +1,18 @@
 from django.db import models
 import datetime
 from django.utils import timezone
+from django.contrib import admin
 
 # Create your models here.
 class Question(models.Model):
-    question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField("date published")
+    question_text = models.CharField("Pregunta", max_length=200)
+    pub_date = models.DateTimeField("Fecha de publicación")
+
+    @admin.display(
+        boolean=True,
+        ordering="pub_date",
+        description="Published recently?",
+    )
 
     def was_published_recently(self):
         now = timezone.now()
