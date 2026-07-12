@@ -5,8 +5,28 @@ from django.urls import reverse
 from django.views import generic
 from .models import Question, Choice
 from django.utils import timezone
+from .forms import QuestionForm
 
 # Create your views here.
+class QuestionCreateView(generic.CreateView):
+    form_class = QuestionForm
+    template_name = "polls/question_create.html"
+    success_url = "/polls"
+
+
+class QuestionUpdateView(generic.UpdateView):
+    model = Question
+    fields = ["question_text", "pub_date"]
+    template_name = "polls/question_update.html"
+    success_url = "/polls"
+
+
+class QuestionDeleteView(generic.DeleteView):
+    model = Question
+    template_name = "polls/question_delete.html"
+    success_url = "/polls"
+
+
 class IndexView(generic.ListView):
     template_name = "polls/index.html"
     context_object_name = "latest_question_list"
@@ -49,3 +69,5 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse("polls:results", args=(question.id,)))
 
     return HttpResponse("You're voting on question %s" % question_id)
+
+
