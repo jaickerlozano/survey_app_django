@@ -1,0 +1,9 @@
+<h1>Esta es la página para Eliminar la pregunta {{ question_id }} </h1>
+
+<form action="{% url 'polls:delete' question.id %}" method='post'>
+    {% csrf_token %}
+    <p>Desea eliminar la pregunta: <strong>{{ question.question_text }}?</strong></p>
+    <input type="submit" value="Eliminar">
+</form>
+
+<p><a href="{% url 'polls:index' %}">Volver</a></p>
